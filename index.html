@@ -49,9 +49,6 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="index.php" class="nav-link">Home</a>
       </li>
-      <!--<li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>-->
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -143,13 +140,24 @@
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                        <div class="modal-body">
-                          ...
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                        <form id="add-item-form">
+                          <div class="modal-body">
+                            
+                              <div class="form-group">
+                                <label for="inputAddItemName">Name</label>
+                                <input type="text" name="name" class="form-control" id="inputAddItemName" placeholder="Enter item name">
+                              </div>
+                              <div class="form-group">
+                                <label for="inputAddItemPrice">Price</label>
+                                <input type="number" name="price" class="form-control" id="inputAddItemPrice" placeholder="price">
+                              </div>
+                            
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -158,10 +166,10 @@
               <!-- /.card-header -->
               <div class="card-body">
               <div class="col-md-12">
-                  <form method="" action="">
+                  <form id="search-form">
                     <div class="row">
                         <div class="col-md-4 bottom-10">
-                          <input type="text" class="form-control" id="kata_kunci" name="katakunci">
+                          <input type="text" class="form-control" id="kata_kunci" name="search">
                         </div>
                         <div class="col-md-5 bottom-10">
                           <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i>&nbsp; Search</button>
@@ -178,136 +186,19 @@
                         <th width="15%" class="text-center">Aksi</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td class="text-center">1.</td>
-                        <td>Buku Tulis</td>
-                        <td class="text-center">8000</td>
-                        <td class="text-center">
-                          <!-- Button trigger modal -->
-                          <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#editDataModal">
-                            <i class="fas fa-edit"></i>
-                          </button>
-
-                          <!-- Modal -->
-                          <div class="modal fade" id="editDataModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Edit Data Barang</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  ...
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <a href="#" class="btn btn-xs btn-warning"><i class="fas fa-trash" title="Hapus"></i></a>                         
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">2</td>
-                        <td>Pensil 2B</td>
-                        <td class="text-center">6000</td>
-                        <td class="text-center">
-                          <!-- Button trigger modal -->
-                          <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#editDataModal">
-                            <i class="fas fa-edit"></i>
-                          </button>
-
-                          <!-- Modal -->
-                          <div class="modal fade" id="editDataModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Edit Data Barang</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  ...
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                           <a href="#" class="btn btn-xs btn-warning"><i class="fas fa-trash" title="Hapus"></i></a>                         
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">3</td>
-                        <td>Penghapus</td>
-                        <td class="text-center">3000</td>
-                        <td class="text-center">
-                          <!-- Button trigger modal -->
-                          <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#editDataModal">
-                            <i class="fas fa-edit"></i>
-                          </button>
-
-                          <!-- Modal -->
-                          <div class="modal fade" id="editDataModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Edit Data Barang</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  ...
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                           <a href="#" class="btn btn-xs btn-warning"><i class="fas fa-trash" title="Hapus"></i></a>                         
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">4</td>
-                        <td>Map Plastik</td>
-                        <td class="text-center">12000</td>
-                        <td class="text-center">
-                          <a href="edit-data.php" class="btn btn-xs btn-info" title="Edit"><i class="fas fa-edit"></i></a>
-                           <a href="#" class="btn btn-xs btn-warning"><i class="fas fa-trash" title="Hapus"></i></a>                         
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">5</td>
-                        <td>Penggaris 30cm</td>
-                        <td class="text-center">5500</td>
-                        <td class="text-center">
-                          <a href="edit-data.php" class="btn btn-xs btn-info" title="Edit"><i class="fas fa-edit"></i></a>
-                           <a href="#" class="btn btn-xs btn-warning"><i class="fas fa-trash" title="Hapus"></i></a>                         
-                        </td>
-                      </tr>
+                    <tbody id="table-body">
                       
                     </tbody>
                   </table>  
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
-                <ul class="pagination pagination-sm m-0 float-right">
-                  <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                <ul class="pagination pagination-sm m-0 float-right" id="pagination">
+                  <!-- <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
                   <li class="page-item"><a class="page-link" href="#">1</a></li>
                   <li class="page-item"><a class="page-link" href="#">2</a></li>
                   <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li> -->
                 </ul>
               </div>
             </div>
@@ -346,15 +237,7 @@
 <script src="dist/js/adminlte.js"></script>
 
 <script src="dist/js/global.js"></script>
-<!-- CKEditor -->
-<script src="ckeditor/ckeditor.js"></script>
-<script>
-  // Replace the <textarea id="editor1"> with a CKEditor
-  // instance, using default configuration.
-  CKEDITOR.replace( 'editor1',{filebrowserImageBrowseUrl : 'kcfinder'} );
-  CKEDITOR.replace( 'editor2',{filebrowserImageBrowseUrl : 'kcfinder'} );
 
-</script>
 <!-- bootstrap datepicker -->
 <script src="datepicker/js/bootstrap-datepicker.js"></script>
 <script>
@@ -366,6 +249,242 @@
     minViewMode: "years",
     autoclose: true
   });
+
+  let items = [];
+
+  document.onreadystatechange = async (e) => {
+      if (document.readyState === 'complete')
+      {
+          const url = new URL('https://kasir-backend-ntb6iw2kdq-as.a.run.app/api/items') 
+
+          const urlParams = new URLSearchParams(window.location.search);
+          const search = urlParams.get('search');
+          const page = urlParams.get('page');
+          const queryObject = {};
+
+          if (search) {
+            queryObject.search = search;
+          }
+
+          if (page) {
+            queryObject.page = page;
+          }
+
+          url.search = new URLSearchParams(queryObject);
+
+          const res = await fetch(url, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('katalog_token')
+            }
+          });
+
+          const result = await res.json();
+
+          items = result.data.items.data;
+
+          if (items.length) {
+            items.forEach((item, index) => {
+              const tr = document.createElement('tr');
+              const td1 = document.createElement('td');
+              const td2 = document.createElement('td');
+              const td3 = document.createElement('td');
+              const td4 = document.createElement('td');
+
+              td1.innerHTML = index + 1;
+              td2.innerHTML = item.name;
+              td3.innerHTML = 'Rp' + item.price.toLocaleString('id-ID');
+              td4.innerHTML = `
+                <button type="button" onclick="editItem(${item.id})" class="btn btn-xs btn-info" data-toggle="modal" data-target="#editDataModal${item.id}">
+                  <i class="fas fa-edit"></i>
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="editDataModal${item.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Data Barang #${item.id}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <form id="edit-item-${item.id}">
+                        <div class="modal-body">
+                          
+                            <div class="form-group">
+                              <input type="text" name="name" class="form-control" id="inputEditItemName${item.id}" placeholder="Enter item name">
+                            </div>
+                            <div class="form-group">
+                              <input type="number" name="price" class="form-control" id="inputEditItemPrice${item.id}" placeholder="price">
+                            </div>
+                          
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" onclick="deleteItem(${item.id})" class="btn btn-xs btn-danger">
+                  <i class="fas fa-trash"></i>
+                </button>
+              `;
+
+              td1.className = 'text-center';
+              td3.className = 'text-center';
+              td4.className = 'text-center';
+
+              tr.appendChild(td1);
+              tr.appendChild(td2);
+              tr.appendChild(td3);
+              tr.appendChild(td4);
+
+              document.getElementById('table-body').appendChild(tr);
+            });
+          } else {
+            const tr = document.createElement('tr');
+            const td1 = document.createElement('td');
+            const td2 = document.createElement('td');
+            const td3 = document.createElement('td');
+            const td4 = document.createElement('td');
+
+            td1.innerHTML = '-';
+            td2.innerHTML = 'No Data Found';
+            td3.innerHTML = '-';
+            td4.innerHTML = '-';
+
+            td1.className = 'text-center';
+            td3.className = 'text-center';
+            td4.className = 'text-center';
+
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+
+            document.getElementById('table-body').appendChild(tr);
+          }
+
+          
+          const pagination = result.data.items.meta
+          
+          pagination.links.forEach(link => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+
+            // TODO: this link below need modification
+            if (link.url) {
+              const pageQuery = link.url.split('?')[1];
+              let path = window.location.href.split('?')[0];
+
+              if (search) {
+                a.href = path + '&' + pageQuery; 
+              } else {
+                a.href = path + '?' + pageQuery;
+              }
+            } else {
+              a.href = '#';
+            }
+            a.innerHTML = link.label;
+
+            console.log(link)
+
+            li.className = 'page-item';
+            a.className = 'page-link';
+
+            li.appendChild(a);
+
+            document.getElementById('pagination').appendChild(li);
+          });
+      }
+  };
+
+  $('#add-item-form').submit((e) => {
+    const name = $('#inputAddItemName').val();
+    const price = $('#inputAddItemPrice').val();
+    
+    fetch("https://kasir-backend-ntb6iw2kdq-as.a.run.app/api/items", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer ' + localStorage.getItem('katalog_token')
+      },
+      body: JSON.stringify({
+        name,
+        price,
+      }),
+    }).then((res) => res.json())
+      .then((result) => {
+        window.location.reload();
+      });
+
+    e.preventDefault();
+  })
+
+  let editedId = null;
+  let editForm = null;
+
+  const editItem = (id) => {
+    editedId = id;
+    const url = 'https://kasir-backend-ntb6iw2kdq-as.a.run.app/api/items/' + id;
+
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('katalog_token')
+      }
+    }).then((res) => res.json())
+      .then((result) => {
+        const item = result.data.item;
+
+        $(`#inputEditItemName${editedId}`).val(item.name);
+        $(`#inputEditItemPrice${editedId}`).val(item.price);
+      });
+
+    $(`#edit-item-${editedId}`).submit((e) => {
+      const name = $(`#inputEditItemName${editedId}`).val();
+      const price = $(`#inputEditItemPrice${editedId}`).val();
+
+      fetch(`https://kasir-backend-ntb6iw2kdq-as.a.run.app/api/items/${editedId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('katalog_token')
+        },
+        body: JSON.stringify({
+          name,
+          price,
+        })
+      }).then((res) => res.json())
+        .then((result) => {
+          window.location.reload();
+        });
+
+      e.preventDefault();
+    });
+  }
+
+  const deleteItem = (id) => {
+    if (confirm('Are you sure?')) {
+      const url = 'https://kasir-backend-ntb6iw2kdq-as.a.run.app/api/items/' + id;
+
+      fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('katalog_token')
+        }
+      }).then((res) => res.json())
+        .then((result) => {
+          window.location.href = 'index.html';
+        });
+    }
+  }
 </script>
 </body>
 </html>
