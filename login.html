@@ -124,10 +124,25 @@
 
       // TODO: make auth check mechanism
       document.onreadystatechange = (e) => {
-        if (checkAuth()) {
-          window.location.href = 'index.html' 
-        } else {
-          window.location.href = 'login.html'
+        const checkAuthUrl = 'https://kasir-backend-ntb6iw2kdq-as.a.run.app/api/auth/me';
+
+        if (document.readyState === 'complete') {
+          fetch(checkAuthUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('katalog_token')
+            }
+          })
+            .then(res => res.json())
+            .then(result => {
+              if (result.code === 200) {
+                window.location.href = 'index.html';
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            });
         }
       };
 

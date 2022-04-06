@@ -46,14 +46,11 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.php" class="nav-link">Home</a>
-      </li>
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a href="signout.php" class="nav-link">
+        <a href="#" onclick="logout()" class="nav-link">
             Sign Out&nbsp; 
             <i class="fas fa-sign-out-alt"></i>
         </a>
@@ -87,7 +84,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="penjualan.html" class="nav-link">
+          <a href="index-penjualan.html" class="nav-link">
             <i class="nav-icon fas fa-chart-line"></i>
             <p>
             Transaksi Penjualan
@@ -255,107 +252,103 @@
   document.onreadystatechange = async (e) => {
       if (document.readyState === 'complete')
       {
-          const url = new URL('https://kasir-backend-ntb6iw2kdq-as.a.run.app/api/items') 
+        const checkAuthUrl = 'https://kasir-backend-ntb6iw2kdq-as.a.run.app/api/auth/me';
 
-          const urlParams = new URLSearchParams(window.location.search);
-          const search = urlParams.get('search');
-          const page = urlParams.get('page');
-          const queryObject = {};
-
-          if (search) {
-            queryObject.search = search;
-          }
-
-          if (page) {
-            queryObject.page = page;
-          }
-
-          url.search = new URLSearchParams(queryObject);
-
-          const res = await fetch(url, {
-            method: 'GET',
+        const resCheckAuth = await fetch(checkAuthUrl, {
+            method: 'POST',
             headers: {
               'Content-Type': 'application/json',
+              'Accept': 'application/json',
               'Authorization': 'Bearer ' + localStorage.getItem('katalog_token')
             }
-          });
+        });
 
-          const result = await res.json();
+        const resultCheckAuth = await resCheckAuth.json();
 
-          items = result.data.items.data;
+        if (resultCheckAuth.code == 401) {
+          window.location.href = 'login.html';
+        }
 
-          if (items.length) {
-            items.forEach((item, index) => {
-              const tr = document.createElement('tr');
-              const td1 = document.createElement('td');
-              const td2 = document.createElement('td');
-              const td3 = document.createElement('td');
-              const td4 = document.createElement('td');
 
-              td1.innerHTML = index + 1;
-              td2.innerHTML = item.name;
-              td3.innerHTML = 'Rp' + item.price.toLocaleString('id-ID');
-              td4.innerHTML = `
-                <button type="button" onclick="editItem(${item.id})" class="btn btn-xs btn-info" data-toggle="modal" data-target="#editDataModal${item.id}">
-                  <i class="fas fa-edit"></i>
-                </button>
+        const url = new URL('https://kasir-backend-ntb6iw2kdq-as.a.run.app/api/items') 
 
-                <!-- Modal -->
-                <div class="modal fade" id="editDataModal${item.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Data Barang #${item.id}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <form id="edit-item-${item.id}">
-                        <div class="modal-body">
-                          
-                            <div class="form-group">
-                              <input type="text" name="name" class="form-control" id="inputEditItemName${item.id}" placeholder="Enter item name">
-                            </div>
-                            <div class="form-group">
-                              <input type="number" name="price" class="form-control" id="inputEditItemPrice${item.id}" placeholder="price">
-                            </div>
-                          
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-                <button type="button" onclick="deleteItem(${item.id})" class="btn btn-xs btn-danger">
-                  <i class="fas fa-trash"></i>
-                </button>
-              `;
+        const urlParams = new URLSearchParams(window.location.search);
+        const search = urlParams.get('search');
+        const page = urlParams.get('page');
+        const queryObject = {};
 
-              td1.className = 'text-center';
-              td3.className = 'text-center';
-              td4.className = 'text-center';
+        if (search) {
+          queryObject.search = search;
+        }
 
-              tr.appendChild(td1);
-              tr.appendChild(td2);
-              tr.appendChild(td3);
-              tr.appendChild(td4);
+        if (page) {
+          queryObject.page = page;
+        }
 
-              document.getElementById('table-body').appendChild(tr);
-            });
-          } else {
+        url.search = new URLSearchParams(queryObject);
+
+        const res = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('katalog_token')
+          }
+        });
+
+        const result = await res.json();
+
+        items = result.data.items.data;
+
+        if (items.length) {
+          items.forEach((item, index) => {
             const tr = document.createElement('tr');
             const td1 = document.createElement('td');
             const td2 = document.createElement('td');
             const td3 = document.createElement('td');
             const td4 = document.createElement('td');
 
-            td1.innerHTML = '-';
-            td2.innerHTML = 'No Data Found';
-            td3.innerHTML = '-';
-            td4.innerHTML = '-';
+            td1.innerHTML = index + 1;
+            td2.innerHTML = item.name;
+            td3.innerHTML = 'Rp' + item.price.toLocaleString('id-ID');
+            td4.innerHTML = `
+              <button type="button" onclick="editItem(${item.id})" class="btn btn-xs btn-info" data-toggle="modal" data-target="#editDataModal${item.id}">
+                <i class="fas fa-edit"></i>
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="editDataModal${item.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Edit Data Barang #${item.id}</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form id="edit-item-${item.id}">
+                      <div class="modal-body">
+                        
+                          <div class="form-group">
+                            <input type="text" name="name" class="form-control" id="inputEditItemName${item.id}" placeholder="Enter item name">
+                          </div>
+                          <div class="form-group">
+                            <input type="number" name="price" class="form-control" id="inputEditItemPrice${item.id}" placeholder="price">
+                          </div>
+                        
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <button type="button" onclick="deleteItem(${item.id})" class="btn btn-xs btn-danger">
+                <i class="fas fa-trash"></i>
+              </button>
+            `;
 
             td1.className = 'text-center';
             td3.className = 'text-center';
@@ -367,39 +360,59 @@
             tr.appendChild(td4);
 
             document.getElementById('table-body').appendChild(tr);
-          }
-
-          
-          const pagination = result.data.items.meta
-          
-          pagination.links.forEach(link => {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-
-            // TODO: this link below need modification
-            if (link.url) {
-              const pageQuery = link.url.split('?')[1];
-              let path = window.location.href.split('?')[0];
-
-              if (search) {
-                a.href = path + '&' + pageQuery; 
-              } else {
-                a.href = path + '?' + pageQuery;
-              }
-            } else {
-              a.href = '#';
-            }
-            a.innerHTML = link.label;
-
-            console.log(link)
-
-            li.className = 'page-item';
-            a.className = 'page-link';
-
-            li.appendChild(a);
-
-            document.getElementById('pagination').appendChild(li);
           });
+        } else {
+          const tr = document.createElement('tr');
+          const td1 = document.createElement('td');
+          const td2 = document.createElement('td');
+          const td3 = document.createElement('td');
+          const td4 = document.createElement('td');
+
+          td1.innerHTML = '-';
+          td2.innerHTML = 'No Data Found';
+          td3.innerHTML = '-';
+          td4.innerHTML = '-';
+
+          td1.className = 'text-center';
+          td3.className = 'text-center';
+          td4.className = 'text-center';
+
+          tr.appendChild(td1);
+          tr.appendChild(td2);
+          tr.appendChild(td3);
+          tr.appendChild(td4);
+
+          document.getElementById('table-body').appendChild(tr);
+        }
+
+        
+        const pagination = result.data.items.meta
+        
+        pagination.links.forEach(link => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+
+          if (link.url) {
+            const pageQuery = link.url.split('?')[1];
+            let path = window.location.href.split('?')[0];
+
+            if (search) {
+              a.href = path + '&' + pageQuery; 
+            } else {
+              a.href = path + '?' + pageQuery;
+            }
+          } else {
+            a.href = '#';
+          }
+          a.innerHTML = link.label;
+
+          li.className = 'page-item';
+          a.className = 'page-link';
+
+          li.appendChild(a);
+
+          document.getElementById('pagination').appendChild(li);
+        });
       }
   };
 
@@ -484,6 +497,23 @@
           window.location.href = 'index.html';
         });
     }
+  }
+
+  const logout = () => {
+    const url = 'https://kasir-backend-ntb6iw2kdq-as.a.run.app/api/auth/logout';
+
+    const res = fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('katalog_token')
+      }
+    }).then((res) => res.json())
+      .then((result) => {
+        localStorage.removeItem('katalog_token');
+        window.location.href = 'login.html';
+      });
   }
 </script>
 </body>
